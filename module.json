@@ -1,0 +1,150 @@
+{
+  "name": "NetIO 2KZ",
+  "type": "HTTP",
+  "path": "Hardware",
+
+  "version": "0.0.1",
+  "description": "Control Netio 2KZ networked power relay (using JSON API)",
+  "url": "https://github.com/DonGuig/Netio-2KZ-Chataigne-module",
+  "downloadURL": "https://github.com/DonGuig/Netio-2KZ-Chataigne-module/archive/master.zip",
+
+  "hasInput": true,
+  "hasOutput": true,
+  "hideDefaultCommands": false,
+
+  "defaults": {
+    "autoAdd": false,
+    "timeout": 2000,
+    "protocol": "JSON"
+  },
+
+  "parameters": {"IP Address":{
+    "type":"String",
+    "default":"0.0.0.0",
+    "description":"IP address of the shelly."
+  }},
+
+  "hideDefaultParameters": [
+    "baseAddress",
+    "autoAdd",
+    "protocol"
+  ],
+
+  "scripts": ["moduleScript.js"],
+
+  "values": {
+    "Model":{
+      "type": "String",
+      "readOnly":"true"
+    },
+    "Version":{
+      "type": "String",
+      "readOnly":"true"
+    },
+    "MAC Address":{
+      "type": "String",
+      "readOnly":"true"
+    },
+    "JSON ver":{
+      "type": "String",
+      "readOnly":"true"
+    },
+    "Time":{
+      "type": "String",
+      "readOnly":"true"
+    },
+    "Voltage (V)":{
+      "type": "Float",
+      "readOnly":"true"
+    },
+    "Frequency (Hz)":{
+      "type": "Float",
+      "readOnly":"true"
+    },
+    "TotalCurrent (mA)":{
+      "type": "Float",
+      "readOnly":"true"
+    },
+    "TotalPowerFactor":{
+      "type": "Float",
+      "readOnly":"true"
+    },
+    "TotalLoad (W)":{
+      "type": "Float",
+      "readOnly":"true"
+    },
+    "Output 1":{
+      "type": "Container",
+      "collapsed":false,
+      "Name Of:":{
+        "type": "String",
+        "readOnly":"true"
+      },
+      "State:":{
+        "type": "Boolean",
+        "readOnly":"true"
+      },
+      "Current (mA):":{
+        "type": "Float",
+        "readOnly":"true"
+      },
+      "Load (W):":{
+        "type": "Float",
+        "readOnly":"true"
+      },
+      "Power Factor:":{
+        "type": "Float",
+        "readOnly":"true"
+      }
+    },
+    "Output 2":{
+      "type": "Container",
+      "collapsed":false,
+      "Name Of:":{
+        "type": "String",
+        "readOnly":"true"
+      },
+      "State:":{
+        "type": "Boolean",
+        "readOnly":"true"
+      },
+      "Current (mA):":{
+        "type": "Float",
+        "readOnly":"true"
+      },
+      "Load (W):":{
+        "type": "Float",
+        "readOnly":"true"
+      },
+      "Power Factor:":{
+        "type": "Float",
+        "readOnly":"true"
+      }
+    }
+  },
+
+  "commands": {
+    "Change State": {
+      "menu": "",
+      "callback": "changeState",
+      "parameters": {
+        "Output": {
+          "type": "Integer",
+          "default": 1,
+          "min": 1,
+          "max": 2,
+          "description": "Output number (1 or 2)"
+        },
+        "State": {
+          "type": "Boolean",
+          "default": false,
+          "description": "checked = ON, unchecked = OFF"
+        }
+      }
+    },
+    "Request status": {
+      "menu": "",
+      "callback": "requestStatus"
+    }
+  }
+}
